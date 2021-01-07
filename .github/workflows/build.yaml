@@ -35,11 +35,3 @@ jobs:
         run: |
           gcloud auth configure-docker
           docker push gcr.io/kf-feast/spark-py:v3.0.1
-      - name: Build Docker (with extra dependencies)
-        run: | 
-          cd k8s_spark
-          docker build -t gcr.io/kf-feast/spark-py-extra:v3.0.1 --build-arg BASE_IMAGE=gcr.io/kf-feast/spark-py-base/spark-py:v3.0.1 .
-      - name: Push Docker (with extra dependencies)
-        run: |
-          gcloud auth configure-docker
-          docker push gcr.io/kf-feast/spark-py-extra:v3.0.1
