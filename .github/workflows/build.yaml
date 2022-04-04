@@ -20,7 +20,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@v0
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
@@ -29,8 +29,8 @@ jobs:
         run: bash build.sh
       - name: Build Docker
         run: | 
-          docker build -t gcr.io/kf-feast/spark-py:v3.0.1 .
+          docker build -t gcr.io/kf-feast/spark-py:v3.0.1-py39 .
       - name: Push Docker
         run: |
           gcloud auth configure-docker
-          docker push gcr.io/kf-feast/spark-py:v3.0.1
+          docker push gcr.io/kf-feast/spark-py:v3.0.1-py39
